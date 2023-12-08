@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Footprint Calculator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div>
+        <nav class="navbar navbar-expand-sm bg-body-tertiary">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">Footprint Calculator</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Features</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+        </nav>
+        <div class="content">
+            <form class="create-newitem">
+
+                <div class="mb-3">
+                    <label for="dish-name" class="form-label">Dish name:</label>
+                    <input type="text" class="form-control" id="dish-name">
+                  </div>
+                <h3>Add Ingredient</h3>
+                <div class="mb-3">
+                  <label for="name" class="form-label">Name</label>
+                  <select class="form-select" id="name" aria-label="">
+                    <option selected>Select the ingredient name</option>
+                    <option value="apples">Apples</option>
+                    <option value="bananas">Bananas</option>
+                    <option value="barley">Barley</option>
+                    <option value="beef_herd">Beef (beef herd)</option>
+                    <option value="beef_dairy">Beef (dairy herd)</option>
+                    <option value="beet_sugar">Beet Sugar</option>
+                    <option value="berries_grapes">Berries & Grapes</option>
+                    <option value="brassicas">Brassicas</option>
+                    <option value="cane_sugar">Cane Sugar</option>
+                    <option value="cassava">Cassava</option>
+                    <option value="cheese">Cheese</option>
+                    <option value="citrus_fruit">Citrus Fruit</option>
+                    <option value="coffee">Coffee</option>
+                    <option value="dark_chocolate">Dark Chocolate</option>
+                    <option value="eggs">Eggs</option>
+                    <option value="farmed_fish">Fish (farmed)</option>
+                    <option value="groundnuts">Groundnuts</option>
+                    <option value="lamb_mutton">Lamb & Mutton</option>
+                    <option value="maize">Maize</option>
+                    <option value="milk">Milk</option>
+                    <option value="nuts">Nuts</option>
+                    <option value="oatmeal">Oatmeal</option>
+                    <option value="onions_leeks">Onions & Leeks</option>
+                    <option value="other_fruit">Other Fruit</option>
+                    <option value="other_pulses">Other Pulses</option>
+                    <option value="other_vegetables">Other Vegetables</option>
+                    <option value="peas">Peas</option>
+                    <option value="pig_meat">Pig Meat</option>
+                    <option value="potatoes">Potatoes</option>
+                    <option value="poultry_meat">Poultry Meat</option>
+                    <option value="farmed_prawns">Prawns (farmed)</option>
+                    <option value="rice">Rice</option>
+                    <option value="root_vegetables">Root Vegetables</option>
+                    <option value="soy_milk">Soy milk</option>
+                    <option value="tofu">Tofu</option>
+                    <option value="tomatoes">Tomatoes</option>
+                    <option value="wheat_rye">Wheat & Rye</option>
+                    <option value="wine">Wine</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="weight" class="form-label">Weight (g)</label>
+                  <input type="number" class="form-control" id="weight">
+                </div>
+                <button type="submit" id="addIngredient" class="btn btn-primary">Add ingredient</button>
+              </form>
+              <h3>Ingredients Added</h3>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Ingredient</th>
+                    <th scope="col">Weight(g)</th>
+                    <th scope="col">Footprint(kg of CO2e)</th>
+                    <th scope="col">Option</th>
+                  </tr>
+                </thead>
+                <tbody id="list-container">
+                </tbody>
+              </table>
+              <h2>Total carbon footprint for <span id="sum-dishname"></span></h2>
+              <p id="sum-total-footprint"></p>
+        </div>
+        <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">Edit ingredient detail:</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <form action="">
+                    <div class="mb-3">
+                        <label for="edit-name" class="form-label">Name</label>
+                        <select class="form-select" id="edit-name" aria-label="">
+                          <option selected>Select the ingredient name</option>
+                          <option value="apples">Apples</option>
+                          <option value="bananas">Bananas</option>
+                          <option value="barley">Barley</option>
+                          <option value="beef_herd">Beef (beef herd)</option>
+                          <option value="beef_dairy">Beef (dairy herd)</option>
+                          <option value="beet_sugar">Beet Sugar</option>
+                          <option value="berries_grapes">Berries & Grapes</option>
+                          <option value="brassicas">Brassicas</option>
+                          <option value="cane_sugar">Cane Sugar</option>
+                          <option value="cassava">Cassava</option>
+                          <option value="cheese">Cheese</option>
+                          <option value="citrus_fruit">Citrus Fruit</option>
+                          <option value="coffee">Coffee</option>
+                          <option value="dark_chocolate">Dark Chocolate</option>
+                          <option value="eggs">Eggs</option>
+                          <option value="farmed_fish">Fish (farmed)</option>
+                          <option value="groundnuts">Groundnuts</option>
+                          <option value="lamb_mutton">Lamb & Mutton</option>
+                          <option value="maize">Maize</option>
+                          <option value="milk">Milk</option>
+                          <option value="nuts">Nuts</option>
+                          <option value="oatmeal">Oatmeal</option>
+                          <option value="onions_leeks">Onions & Leeks</option>
+                          <option value="other_fruit">Other Fruit</option>
+                          <option value="other_pulses">Other Pulses</option>
+                          <option value="other_vegetables">Other Vegetables</option>
+                          <option value="peas">Peas</option>
+                          <option value="pig_meat">Pig Meat</option>
+                          <option value="potatoes">Potatoes</option>
+                          <option value="poultry_meat">Poultry Meat</option>
+                          <option value="farmed_prawns">Prawns (farmed)</option>
+                          <option value="rice">Rice</option>
+                          <option value="root_vegetables">Root Vegetables</option>
+                          <option value="soy_milk">Soy milk</option>
+                          <option value="tofu">Tofu</option>
+                          <option value="tomatoes">Tomatoes</option>
+                          <option value="wheat_rye">Wheat & Rye</option>
+                          <option value="wine">Wine</option>
+                        </select>
+                      </div>
+                      <div class="mb-3">
+                        <label for="edit-weight" class="form-label">Weight (g)</label>
+                        <input type="number" class="form-control" id="edit-weight">
+                      </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" id="submit-edit"  data-bs-toggle="modal">Save changes</button>
+                </div>
+              </div>
+            </div>
+        </div>
+        </div>
+        
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="./script.js"></script>
+</body>
+</html>
